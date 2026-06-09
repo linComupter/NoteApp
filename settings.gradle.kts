@@ -1,7 +1,3 @@
-rootProject.name = "NoteApp"
-include(":composeApp")
-include(":shared")
-
 pluginManagement {
     repositories {
         google()
@@ -16,3 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
+rootProject.name = "NoteApp"
+include(":composeApp")
+include(":shared")
