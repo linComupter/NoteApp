@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import androidx.savedstate.read
 import com.noteapp.ui.screen.edit.EditScreen
 import com.noteapp.ui.screen.home.HomeScreen
 
@@ -24,7 +25,7 @@ fun AppNavigation() {
             route = "edit/{noteId}",
             arguments = listOf(navArgument("noteId") { type = NavType.StringType })
         ) { backStackEntry ->
-            val rawId: String? = backStackEntry.savedStateHandle["noteId"]
+            val rawId = backStackEntry.arguments?.read { getStringOrNull("noteId") }
             val noteId = if (rawId == "new") null else rawId
             EditScreen(
                 noteId = noteId,
