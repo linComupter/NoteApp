@@ -6,6 +6,7 @@ import com.noteapp.shared.domain.usecase.GetAllNotesUseCase
 import com.noteapp.ui.FakeNoteRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
@@ -42,6 +43,7 @@ class HomeViewModelTest {
 
     @Test
     fun `notes state reflects repository flow`() = runTest {
+        backgroundScope.launch { viewModel.notes.collect {} }
         repo.saveNote(sampleNote("1"))
         repo.saveNote(sampleNote("2"))
         testDispatcher.scheduler.advanceUntilIdle()
@@ -50,6 +52,7 @@ class HomeViewModelTest {
 
     @Test
     fun `deleteNote removes note`() = runTest {
+        backgroundScope.launch { viewModel.notes.collect {} }
         repo.saveNote(sampleNote("1"))
         testDispatcher.scheduler.advanceUntilIdle()
         viewModel.deleteNote("1")
