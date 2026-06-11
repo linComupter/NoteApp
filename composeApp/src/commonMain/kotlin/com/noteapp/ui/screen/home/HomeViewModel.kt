@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     getAllNotes: GetAllNotesUseCase,
-    private val deleteNote: DeleteNoteUseCase
+    private val deleteNoteUseCase: DeleteNoteUseCase
 ) : ViewModel() {
 
     val notes: StateFlow<List<Note>> = getAllNotes.execute()
@@ -23,6 +23,6 @@ class HomeViewModel(
         )
 
     fun deleteNote(id: String) {
-        viewModelScope.launch { deleteNote.execute(id) }
+        viewModelScope.launch { deleteNoteUseCase.execute(id) }
     }
 }
