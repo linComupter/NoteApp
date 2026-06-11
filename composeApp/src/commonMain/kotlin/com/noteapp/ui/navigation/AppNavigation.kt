@@ -24,7 +24,7 @@ fun AppNavigation() {
             route = "edit/{noteId}",
             arguments = listOf(navArgument("noteId") { type = NavType.StringType })
         ) { backStackEntry ->
-            val rawId = backStackEntry.arguments?.getString("noteId")
+            val rawId: String? = backStackEntry.savedStateHandle["noteId"]
             val noteId = if (rawId == "new") null else rawId
             EditScreen(
                 noteId = noteId,

@@ -31,6 +31,7 @@ kotlin {
         }
         androidMain.dependencies {
             implementation(libs.koin.android)
+            implementation(libs.androidx.activity.compose)
         }
         val desktopMain by getting {
             dependencies {
