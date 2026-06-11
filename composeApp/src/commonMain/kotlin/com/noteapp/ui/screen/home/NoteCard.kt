@@ -1,5 +1,6 @@
 package com.noteapp.ui.screen.home
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,7 @@ fun parseHexColor(hex: String): Color {
     else Color(argb.toInt())
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun NoteCard(
     note: Note,

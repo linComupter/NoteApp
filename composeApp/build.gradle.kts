@@ -26,6 +26,7 @@ kotlin {
             implementation(libs.markdown.renderer)
             implementation(libs.datastore.preferences)
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
             implementation(project(":shared"))
         }
         androidMain.dependencies {
