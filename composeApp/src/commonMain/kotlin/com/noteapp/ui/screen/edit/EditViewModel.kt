@@ -38,6 +38,7 @@ class EditViewModel(
     val initialHtml: StateFlow<String> = _initialHtml
 
     private var isNewNote = noteId == null
+    private var originalCreatedAt: Long = 0L
 
     init {
         if (!isNewNote) {
@@ -51,6 +52,7 @@ class EditViewModel(
             _title.value = note.title
             _initialHtml.value = note.htmlContent
             _colorHex.value = note.colorHex
+            originalCreatedAt = note.createdAt
         }
     }
 
@@ -71,7 +73,7 @@ class EditViewModel(
             htmlContent = htmlContent,
             markdownContent = markdown,
             colorHex = _colorHex.value,
-            createdAt = if (isNewNote) 0L else now,
+            createdAt = if (isNewNote) 0L else originalCreatedAt,
             updatedAt = 0L
         )
         viewModelScope.launch {
